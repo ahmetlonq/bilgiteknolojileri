@@ -36,13 +36,27 @@
     <div class="main">
         <div class="content-card">
             <h1 id="welcomeTitle" style="margin-top:0; color:#38bdf8;">Konu: Algoritma Tasarımı</h1>
-            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki videoyu izleyerek algoritmanın ne olduğunu ve bilgisayar bilimlerindeki yerini öğrenin.</p>
+            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki animasyonlu videoyu izleyerek algoritma mantığını temelden kavrayın.</p>
             
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/l8x9HZ-saKY?si=YA2dcDlQ_K2l5d_y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/R72LI5TZmuE" title="Algoritma Nedir?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             
             <button class="transcript-btn" onclick="toggleT()">👁️ Video Metni (Transkript)</button>
             <div id="tText" class="transcript-text">
                 <strong>Erişilebilirlik Dökümü:</strong><br>
-                "Algoritma, Cebrin kurucusu Harezmî tarafından 9. yüzyılda cebir
+                "Algoritma, en basit tabiriyle bir sorunu çözmek için planlanan yol haritasıdır. Günlük hayatta karşılaştığımız karmaşık problemleri küçük ve yönetilebilir adımlara bölmemizi sağlar. Bu videoda gördüğünüz gibi, bir labirentten çıkmak ya da bir işlem yapmak için bilgisayarlara verdiğimiz tüm komutlar bu mantıklı sıralama üzerine kuruludur."
+            </div>
+            
+            <div class="nav-btns">
+                <a href="index.html" class="btn" style="background:#334155;">Geri</a>
+                <a href="alistirma.html" class="btn">Alıştırmaya Geç ➔</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("welcomeTitle").innerText = "Hoş Geldin, " + (localStorage.getItem("ogrenciAdi") || "Öğrenci");
+        function toggleT() { let x = document.getElementById("tText"); x.style.display = (x.style.display === "block") ? "none" : "block"; }
+    </script>
+</body>
+</html>
