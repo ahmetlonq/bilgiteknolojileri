@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8"><title>EduSoft - Kazanımlar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
+        body { margin: 0; background: #0f172a; display: flex; height: 100vh; color: #f8fafc; }
+        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; border-right: 1px solid rgba(255,255,255,0.05); }
+        .sidebar h2 { color: #38bdf8; text-align: center; font-size: 32px; margin-bottom: 50px; }
+        .sidebar li { list-style: none; padding: 15px 20px; color: #64748b; margin-bottom: 5px; border-radius: 12px; }
+        .sidebar a { color: inherit; text-decoration: none; display: block; }
+        .sidebar li.active { background: #0ea5e9; color: white; }
+        .main { flex-grow: 1; padding: 60px; overflow-y: auto; }
+        .card { background: #1e293b; padding: 40px; border-radius: 24px; max-width: 900px; margin: auto; border: 1px solid rgba(255,255,255,0.05); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #0f172a; color: #38bdf8; padding: 15px; text-align: left; border-bottom: 2px solid #38bdf8; }
+        td { padding: 15px; border-bottom: 1px solid #334155; color: #cbd5e1; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>EduSoft</h2>
+        <ul>
+            <li><a href="index.html">⌂ Ana Sayfa</a></li>
+            <li><a href="hedefler.html">🎯 Hedefler</a></li>
+            <li class="active">✓ Kazanımlar</li>
+            <li><a href="konu.html">▣ Konu Anlatımı</a></li>
+            <li><a href="ornek.html">★ Örnekler</a></li>
+            <li><a href="alistirma.html">✎ Alıştırma</a></li>
+            <li><a href="soru_bankasi.html">? Soru Bankası</a></li>
+            <li><a href="analitik.html">↗ Analitik</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="card">
+            <h1 style="color:#38bdf8; margin-top:0;">Kazanımlar ve Bloom Hizalaması</h1>
+            <p style="color:#94a3b8; font-size:18px;">Modül içerisindeki hedeflerin taksonomik karşılıkları ve ölçme araçları:</p>
+            
+            <table>
+                <tr><th>Kazanım</th><th>Bloom Düzeyi</th><th>Ölçme Aracı</th></tr>
+                <tr><td>Algoritma bileşenlerini tanımlar</td><td>Anlama (K1)</td><td>Video İçi Sorular</td></tr>
+                <tr><td>Problemi algoritmik adımlara böler</td><td>Uygulama (K2)</td><td>Kurbağa Atlayışı (Wordwall)</td></tr>
+                <tr><td>Hatalı mantık sırasını bulur</td><td>Analiz (K3)</td><td>Soru Bankası Testi</td></tr>
+                <tr><td>Kendi algoritmasını tasarlar</td><td>Yaratma (K4)</td><td>Performans Görevi</td></tr>
+            </table>
+
+            <div style="text-align:right; margin-top:40px;"><a href="konu.html" style="background:#0ea5e9; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">Konu Anlatımına Geç ➔</a></div>
+        </div>
+    </div>
+</body>
+</html>
