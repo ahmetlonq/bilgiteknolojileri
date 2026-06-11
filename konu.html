@@ -1,108 +1,50 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSoft - Konu Anlatımı</title>
+    <meta charset="UTF-8"><title>EduSoft - Konu Anlatımı</title>
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #333; margin: 0; padding: 0; display: flex; height: 100vh; overflow: hidden; }
-
-        /* SOL MENÜ (Sabit) */
-        .sidebar { width: 260px; background-color: #1e293b; color: #f8fafc; display: flex; flex-direction: column; padding: 20px 0; box-shadow: 4px 0 15px rgba(0,0,0,0.1); z-index: 10; }
-        .sidebar h2 { text-align: center; color: #38bdf8; margin-bottom: 30px; font-size: 28px; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
-        .sidebar li { padding: 15px 25px; display: flex; align-items: center; gap: 15px; font-size: 16px; color: #94a3b8; border-left: 4px solid transparent; text-decoration: none;}
-        .sidebar a { text-decoration: none; color: inherit; display: flex; width: 100%; align-items: center; gap:15px; }
-        .sidebar li.active { background-color: #0f172a; color: #38bdf8; border-left: 4px solid #38bdf8; font-weight: bold; }
-        .sidebar li span { width: 25px; text-align: center; font-size: 18px; }
-
-        /* İLERLEME ÇUBUĞU */
-        .progress-box { padding: 20px; margin: 20px; background-color: #334155; border-radius: 8px; text-align: center; }
-        .progress-box p { margin: 0 0 10px 0; font-size: 14px; color: #94a3b8; }
-        .progress-bar { width: 100%; height: 8px; background-color: #0f172a; border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
-        .progress-fill { height: 100%; background-color: #2dd4bf; width: 33%; } /* Konu sayfası %33 */
-        .progress-box h3 { margin: 0; font-size: 20px; color: #2dd4bf; }
-
-        /* ANA İÇERİK ALANI */
-        .main-content { flex-grow: 1; padding: 40px; overflow-y: auto; }
-        .container { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 900px; margin: 0 auto; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        h1 { color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-top: 0; }
-        .subtitle { color: #64748b; font-size: 18px; margin-bottom: 20px; }
-        
-        /* VİDEO VE ERİŞİLEBİLİRLİK (Alt Metin) */
-        .video-wrapper { margin: 30px 0; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; background: #000; }
-        video { width: 100%; display: block; }
-        .transcript-box { background: #f1f5f9; padding: 20px; border-radius: 8px; margin-bottom: 30px; display: none; border-left: 4px solid #38bdf8; }
-        .transcript-box.show { display: block; }
-        .transcript-btn { background: none; border: 2px solid #cbd5e1; color: #475569; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 10px; transition: 0.2s;}
-        .transcript-btn:hover { background: #e2e8f0; }
-
-        /* BUTONLAR */
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; }
-        .btn { background-color: #0284c7; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; font-weight: bold; text-decoration: none;}
-        .btn:hover { background-color: #0369a1; }
-        .btn-prev { background-color: #94a3b8; }
-        .btn-prev:hover { background-color: #64748b; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; display: flex; height: 100vh; margin: 0; }
+        .sidebar { width: 260px; background: #1e293b; color: white; padding: 20px; }
+        .sidebar li { list-style: none; padding: 15px; color: #94a3b8; }
+        .sidebar li.active { color: #38bdf8; font-weight: bold; }
+        .sidebar a { color: inherit; text-decoration: none; }
+        .main { flex-grow: 1; padding: 40px; overflow-y: auto; }
+        .content { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); max-width: 900px; margin: auto; }
+        .video-box { background: #000; margin: 20px 0; border-radius: 10px; overflow: hidden; aspect-ratio: 16/9; }
+        .transcript { background: #f1f5f9; padding: 15px; border-left: 4px solid #38bdf8; font-size: 14px; margin-top: 10px; }
+        .nav-btns { display: flex; justify-content: space-between; margin-top: 30px; }
+        .btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; background: #0284c7; color: white; }
     </style>
 </head>
 <body>
-
-    <nav class="sidebar">
+    <div class="sidebar">
         <h2>EduSoft</h2>
         <ul>
-            <li><a href="index.html"><span>⌂</span> Ana Sayfa</a></li>
-            <li class="active"><a href="konu.html"><span>▣</span> Konu Anlatımı</a></li>
-            <li><a href="alistirma.html"><span>✎</span> Alıştırma</a></li>
-            <li><a href="analitik.html"><span>↗</span> Analitik</a></li>
+            <li><a href="index.html">⌂ Ana Sayfa</a></li>
+            <li class="active">▣ Konu Anlatımı</li>
+            <li><a href="alistirma.html">✎ Alıştırma</a></li>
+            <li><a href="analitik.html">↗ Analitik</a></li>
         </ul>
-        <div class="progress-box">
-            <p>Modül İlerlemesi</p>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <h3>%33</h3>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <div class="container">
-            <h1 id="welcomeText">Konu Anlatımı: Algoritma Nedir?</h1>
-            <p class="subtitle">Aşağıdaki eğitim videosunu izleyerek temel mantığı kavrayınız. İşitme engelli kullanıcılarımız veya okumayı tercih edenler için video altındaki 'Metin Dökümü' butonunu kullanabilirsiniz.</p>
-
-            <div class="video-wrapper">
-                <video controls controlsList="nodownload">
-                    <source src="assets/video.mp4" type="video/mp4">
-                    Tarayıcınız video etiketini desteklemiyor.
-                </video>
+    </div>
+    <div class="main">
+        <div class="content">
+            <h1 id="welcome">Konu: Algoritma Mantığı</h1>
+            <p>Aşağıdaki videoyu izleyerek temel kavramları öğrenin.</p>
+            <div class="video-box">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/v9x4p1XgB_Q?start=45&end=165" frameborder="0" allowfullscreen></iframe>
             </div>
-
-            <button class="transcript-btn" onclick="toggleTranscript()">👁️ Video Metni (Transkript) Göster/Gizle</button>
-            <div id="transcript" class="transcript-box">
-                <strong>Video Metni:</strong><br>
-                "Merhaba! Bugün algoritmaların dünyasına giriş yapıyoruz. Algoritma, basitçe bir problemi çözmek veya bir amacı gerçekleştirmek için izlenmesi gereken mantıksal ve sıralı adımlar bütünüdür. Sadece bilgisayarlar değil, günlük hayatta yemek yaparken veya adres tarif ederken bile farkında olmadan algoritmaları kullanırız..."
+            <div class="transcript">
+                <strong>Erişilebilirlik Notu (Video Metni):</strong><br>
+                "Algoritma, bir problemi çözmek için takip edilen sıralı adımlardır. Örneğin çay demlemek bir algoritmadır. 1. Suyu ısıt, 2. Çay ekle... Bilgisayarlar da tam olarak bu mantıkla çalışır."
             </div>
-
-            <div class="nav-buttons">
-                <a href="index.html" class="btn btn-prev">◂ Önceki (Ana Sayfa)</a>
-                <a href="alistirma.html" class="btn">Sonraki (Alıştırma) ▸</a>
+            <div class="nav-btns">
+                <a href="index.html" class="btn" style="background:#94a3b8">Geri</a>
+                <a href="alistirma.html" class="btn">Alıştırmaya Geç</a>
             </div>
         </div>
-    </main>
-
+    </div>
     <script>
-        // Giriş sayfasından girilen ismi al ve başlığa ekle
-        window.onload = function() {
-            let isim = localStorage.getItem("ogrenciAdi");
-            if(isim) {
-                document.getElementById("welcomeText").innerText = "Hoş Geldin " + isim + "! Konu: Algoritmalar";
-            }
-        };
-
-        // Transkript Göster/Gizle Butonu İşlevi
-        function toggleTranscript() {
-            document.getElementById("transcript").classList.toggle("show");
-        }
+        document.getElementById("welcome").innerText = "Hoş Geldin, " + (localStorage.getItem("ogrenciAdi") || "Öğrenci");
     </script>
 </body>
 </html>
