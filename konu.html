@@ -6,7 +6,7 @@
     <style>
         * { box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
         body { margin: 0; background: #0f172a; display: flex; height: 100vh; color: #f8fafc; }
-        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; display: flex; flex-direction: column; }
+        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.05); }
         .sidebar h2 { color: #38bdf8; text-align: center; font-size: 32px; margin-bottom: 50px; }
         .sidebar li { list-style: none; padding: 18px 20px; color: #64748b; margin-bottom: 10px; border-radius: 12px; }
         .sidebar a { color: inherit; text-decoration: none; display: flex; width: 100%; }
@@ -35,15 +35,18 @@
     <div class="main">
         <div class="content-card">
             <h1 id="welcomeTitle" style="margin-top:0; color:#38bdf8;">Konu: Algoritma Tasarımı</h1>
-            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki mikro-öğrenme videosu ile temel mantığı kavrayın.</p>
+            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki videoyu izleyerek algoritmanın ne olduğunu ve bilgisayar bilimlerindeki yerini öğrenin.</p>
+            
             <div class="video-container">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/v9x4p1XgB_Q?start=45&end=165" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/l8x9HZ-saKY" frameborder="0" allowfullscreen></iframe>
             </div>
+            
             <button class="transcript-btn" onclick="toggleT()">👁️ Video Metni (Transkript)</button>
             <div id="tText" class="transcript-text">
                 <strong>Erişilebilirlik Dökümü:</strong><br>
-                "Algoritma, bir sorunu çözmek veya belirli bir amaca ulaşmak için tasarlanan mantıksal ve sıralı adımlar bütünüdür. Videoda bahsedildiği gibi, bilgisayarlar her işlemi bir algoritma silsilesi ile gerçekleştirir. Adımların net, sıralı ve sonlu olması kritik önem taşır."
+                "Algoritma, Cebrin kurucusu Harezmî tarafından 9. yüzyılda cebir alanındaki araştırmaları neticesinde ortaya konmuştur. En basit haliyle bir problemi çözmek için izlenen adım adım yol haritasıdır. Kodlama yaparken aslında bilgisayara bu algoritmik adımları anlatırız. Verilen talimatlar net, sıralı ve bir sonuca ulaşacak şekilde tasarlanmalıdır."
             </div>
+            
             <div class="nav-btns">
                 <a href="index.html" class="btn" style="background:#334155;">Geri</a>
                 <a href="alistirma.html" class="btn">Alıştırmaya Geç ➔</a>
