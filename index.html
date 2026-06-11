@@ -1,139 +1,37 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduSoft - Ana Sayfa</title>
+    <meta charset="UTF-8"><title>EduSoft - Giriş</title>
     <style>
-        * { box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f8fafc; 
-            color: #333; 
-            margin: 0; 
-            padding: 0; 
-            display: flex; 
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* SOL MENÜ (Tüm sayfalarda sabit kalacak) */
-        .sidebar {
-            width: 260px;
-            background-color: #1e293b;
-            color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            padding: 20px 0;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-            z-index: 10;
-        }
-        .sidebar h2 { text-align: center; color: #38bdf8; margin-bottom: 30px; font-size: 28px; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
-        .sidebar li {
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 16px;
-            color: #94a3b8; /* Pasif menü rengi */
-            border-left: 4px solid transparent;
-        }
-        .sidebar li.active {
-            background-color: #0f172a;
-            color: #38bdf8;
-            border-left: 4px solid #38bdf8;
-            font-weight: bold;
-        }
-        .sidebar li span { width: 25px; text-align: center; font-size: 18px; }
-
-        /* ANA İÇERİK ALANI */
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .login-container { 
-            background: #fff; 
-            padding: 50px; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08); 
-            width: 100%; 
-            max-width: 500px; 
-            text-align: center;
-            border-top: 6px solid #0284c7;
-        }
-        h1 { color: #0f172a; margin-top: 0; font-size: 24px; }
-        p { color: #64748b; margin-bottom: 30px; line-height: 1.5; }
-        input[type="text"] { 
-            width: 100%; 
-            padding: 15px; 
-            margin-bottom: 20px; 
-            border: 2px solid #e2e8f0; 
-            border-radius: 8px; 
-            font-size: 16px; 
-            transition: 0.3s;
-        }
-        input[type="text"]:focus { border-color: #0284c7; outline: none; }
-        button { 
-            background-color: #0284c7; 
-            color: white; 
-            border: none; 
-            padding: 15px 30px; 
-            border-radius: 8px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            font-weight: bold; 
-            width: 100%;
-        }
-        button:hover { background-color: #0369a1; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f1f5f9; display: flex; height: 100vh; margin: 0; }
+        .sidebar { width: 260px; background: #1e293b; color: white; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar h2 { color: #38bdf8; text-align: center; }
+        .sidebar li { list-style: none; padding: 15px; color: #94a3b8; border-bottom: 1px solid #334155; }
+        .sidebar li.active { color: #38bdf8; font-weight: bold; border-left: 4px solid #38bdf8; background: #0f172a; }
+        .main { flex-grow: 1; display: flex; justify-content: center; align-items: center; background: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; }
+        .login-card { background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 400px; border-top: 5px solid #0284c7; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #0284c7; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <nav class="sidebar">
+    <div class="sidebar">
         <h2>EduSoft</h2>
-        <ul>
-            <li class="active"><span>⌂</span> Ana Sayfa</li>
-            <li><span>▣</span> Konu Anlatımı</li>
-            <li><span>✎</span> Alıştırma</li>
-            <li><span>↗</span> Analitik</li>
-        </ul>
-    </nav>
-
-    <main class="main-content">
-        <div class="login-container">
-            <div style="font-size: 48px; margin-bottom: 20px;">🎓</div>
-            <h1>Öğrenme Panosuna Hoş Geldiniz</h1>
-            <p>Algoritma Temelleri modülüne başlamak için lütfen adınızı ve soyadınızı giriniz.</p>
-            
-            <input type="text" id="userName" placeholder="Örn: Ahmet Yılmaz" autocomplete="off">
-            <button onclick="login()">Eğitime Başla ◂</button>
+        <ul><li class="active">⌂ Ana Sayfa</li><li>▣ Konu Anlatımı</li><li>✎ Alıştırma</li><li>↗ Analitik</li></ul>
+    </div>
+    <div class="main">
+        <div class="login-card">
+            <h1>Hoş Geldiniz</h1>
+            <p>Algoritma modülüne başlamak için adınızı girin.</p>
+            <input type="text" id="nameInput" placeholder="Ad Soyad">
+            <button onclick="saveAndGo()">Eğitime Başla</button>
         </div>
-    </main>
-
+    </div>
     <script>
-        // Sayfa yüklendiğinde daha önce girilmiş isim varsa temizle (Sıfırdan başlama hissi için)
-        window.onload = function() {
-            localStorage.removeItem("ogrenciAdi");
-            document.getElementById("userName").focus();
-        };
-
-        function login() {
-            let name = document.getElementById("userName").value;
-            if(name.trim() === "") {
-                alert("İlerlemek için lütfen adınızı giriniz.");
-                return;
-            }
-            // İsmi tarayıcı hafızasına kaydet
-            localStorage.setItem("ogrenciAdi", name);
-            // İkinci sayfaya (Konu Anlatımı) yönlendir
-            window.location.href = "konu.html";
+        function saveAndGo() {
+            let name = document.getElementById("nameInput").value;
+            if(name) { localStorage.setItem("ogrenciAdi", name); window.location.href = "konu.html"; }
+            else { alert("İsim gerekli!"); }
         }
     </script>
 </body>
