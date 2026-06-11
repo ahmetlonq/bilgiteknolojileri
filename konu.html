@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8"><title>EduSoft - Konu Anlatımı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8"><title>AkademiLMS - Konu Anlatımı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
-        body { margin: 0; background: #0f172a; display: flex; height: 100vh; color: #f8fafc; }
-        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.05); }
-        .sidebar h2 { color: #38bdf8; text-align: center; font-size: 32px; margin-bottom: 50px; }
+        body { margin: 0; background: #f8fafc; display: flex; height: 100vh; color: #1e293b; }
+        .sidebar { width: 280px; background: #ffffff; padding: 40px 20px; display: flex; flex-direction: column; border-right: 1px solid #e2e8f0; }
+        .sidebar h2 { color: #0284c7; text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 40px; }
         .sidebar ul { margin: 0; padding: 0; list-style: none; }
-        .sidebar li { padding: 15px 20px; color: #64748b; margin-bottom: 5px; border-radius: 12px; transition: 0.3s;}
+        .sidebar li { padding: 14px 18px; color: #64748b; font-weight: 600; border-radius: 8px; margin-bottom: 6px; }
         .sidebar a { color: inherit; text-decoration: none; display: block; }
-        .sidebar li.active { background: #0ea5e9; color: white; }
-        .main { flex-grow: 1; padding: 60px; overflow-y: auto; background: #0f172a; }
-        .content-card { background: #1e293b; padding: 40px; border-radius: 24px; max-width: 1000px; margin: auto; border: 1px solid rgba(255,255,255,0.05); }
-        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 16px; overflow: hidden; margin: 30px 0; border: 1px solid #334155; position: relative; }
+        .sidebar li.active { background: #f0f9ff; color: #0284c7; }
+        .sidebar li:hover:not(.active) { background: #f1f5f9; color: #334155; }
+        .nav-progress { margin-top: auto; padding: 20px 15px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .progress-text { display: flex; justify-content: space-between; font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 8px; }
+        .bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+        .bar-fill { height: 100%; background: #0284c7; width: 37%; } /* %37 */
+        
+        .main { flex-grow: 1; padding: 60px; overflow-y: auto; }
+        .card { background: #ffffff; padding: 45px; border-radius: 20px; max-width: 950px; margin: auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; margin: 30px 0; border: 1px solid #e2e8f0; position: relative; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .transcript-btn { background: #334155; color: #94a3b8; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .transcript-btn:hover { background: #475569; color: white; }
-        .transcript-text { background: #0f172a; padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 4px solid #38bdf8; display: none; line-height: 1.6; }
+        
+        .transcript-btn { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .transcript-btn:hover { background: #e2e8f0; color: #1e293b; }
+        .transcript-text { background: #f8fafc; padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 4px solid #0284c7; display: none; line-height: 1.6; color: #475569; border: 1px solid #e2e8f0; }
+        
         .nav-btns { display: flex; justify-content: space-between; margin-top: 40px; }
-        .btn { padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: 700; background: #0ea5e9; color: white; transition: 0.3s; }
-        .btn:hover { box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); }
+        .btn { padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.2s; }
+        .btn-prev { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+        .btn-prev:hover { background: #e2e8f0; }
+        .btn-next { background: #0284c7; color: white; border: none; }
+        .btn-next:hover { background: #0369a1; }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>EduSoft</h2>
+        <h2>AkademiLMS</h2>
         <ul>
             <li><a href="index.html">⌂ Ana Sayfa</a></li>
             <li><a href="hedefler.html">🎯 Hedefler</a></li>
@@ -37,30 +48,34 @@
             <li><a href="soru_bankasi.html">? Soru Bankası</a></li>
             <li><a href="analitik.html">↗ Analitik</a></li>
         </ul>
+        <div class="nav-progress">
+            <div class="progress-text"><span>Eğitim Süreci</span><span>%37</span></div>
+            <div class="bar-bg"><div class="bar-fill"></div></div>
+        </div>
     </div>
     <div class="main">
-        <div class="content-card">
-            <h1 id="welcomeTitle" style="margin-top:0; color:#38bdf8;">Konu: Algoritma Tasarımı</h1>
-            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki videoyu izleyerek algoritmanın ne olduğunu ve bilgisayar bilimlerindeki yerini öğrenin.</p>
+        <div class="card">
+            <h1 id="welcomeTitle" style="color:#0f172a; margin-top:0;">Konu: Algoritma Tasarımı</h1>
+            <p style="color:#64748b; font-size:16px;">Aşağıdaki videoyu izleyerek algoritmanın ne olduğunu ve bilgisayar bilimlerindeki yerini öğrenin.</p>
             
             <div class="video-container">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/l8x9HZ-saKY?si=BeFHy80DqmLSLgBH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             
-            <button class="transcript-btn" onclick="toggleT()">👁️ Video Metni (Transkript)</button>
+            <button class="transcript-btn" onclick="toggleT()">👁️ Video Metni (Erişilebilirlik)</button>
             <div id="tText" class="transcript-text">
-                <strong>Erişilebilirlik Dökümü:</strong><br>
+                <strong>Seslendirme Dökümü:</strong><br>
                 "Algoritma, Cebrin kurucusu Harezmî tarafından 9. yüzyılda cebir alanındaki araştırmaları neticesinde ortaya konmuştur. En basit haliyle bir problemi çözmek için izlenen adım adım yol haritasıdır. Kodlama yaparken aslında bilgisayara bu algoritmik adımları anlatırız. Verilen talimatlar net, sıralı ve bir sonuca ulaşacak şekilde tasarlanmalıdır."
             </div>
             
             <div class="nav-btns">
-                <a href="kazanimlar.html" class="btn" style="background:#334155;">◂ Geri</a>
-                <a href="ornek.html" class="btn">Örneklere Geç ➔</a>
+                <a href="kazanimlar.html" class="btn btn-prev">◂ Geri Dön</a>
+                <a href="ornek.html" class="btn btn-next">Örneklere İlerle ➔</a>
             </div>
         </div>
     </div>
     <script>
-        document.getElementById("welcomeTitle").innerText = "Hoş Geldin, " + (localStorage.getItem("ogrenciAdi") || "Öğrenci");
+        document.getElementById("welcomeTitle").innerText = "Ders: Algoritma Temelleri";
         function toggleT() { let x = document.getElementById("tText"); x.style.display = (x.style.display === "block") ? "none" : "block"; }
     </script>
 </body>
