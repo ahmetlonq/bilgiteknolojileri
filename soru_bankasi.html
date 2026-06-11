@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8"><title>EduSoft - Soru Bankası</title>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8"><title>AkademiLMS - Soru Bankası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
-        body { margin: 0; background: #0f172a; display: flex; height: 100vh; color: #f8fafc; }
-        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; border-right: 1px solid rgba(255,255,255,0.05); }
-        .sidebar h2 { color: #38bdf8; text-align: center; font-size: 32px; margin-bottom: 50px; }
-        .sidebar li { list-style: none; padding: 15px 20px; color: #64748b; margin-bottom: 5px; border-radius: 12px; }
+        body { margin: 0; background: #f8fafc; display: flex; height: 100vh; color: #1e293b; }
+        .sidebar { width: 280px; background: #ffffff; padding: 40px 20px; display: flex; flex-direction: column; border-right: 1px solid #e2e8f0; flex-shrink: 0; }
+        .sidebar h2 { color: #0284c7; text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 40px; }
+        .sidebar ul { margin: 0; padding: 0; list-style: none; }
+        .sidebar li { padding: 14px 18px; color: #64748b; font-weight: 600; border-radius: 8px; margin-bottom: 6px; }
         .sidebar a { color: inherit; text-decoration: none; display: block; }
-        .sidebar li.active { background: #0ea5e9; color: white; }
-        .main { flex-grow: 1; padding: 60px; overflow-y: auto; }
-        .card { background: #1e293b; padding: 40px; border-radius: 24px; max-width: 900px; margin: auto; border: 1px solid rgba(255,255,255,0.05); }
-        .filter-box { display: flex; gap: 15px; margin-bottom: 30px; }
-        select { background: #0f172a; color: white; border: 1px solid #334155; padding: 10px; border-radius: 8px; font-family: 'Urbanist'; outline: none; }
-        .q-item { background: #0f172a; padding: 20px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .q-tag { font-size: 12px; background: #334155; padding: 4px 8px; border-radius: 4px; color: #cbd5e1; margin-right: 10px; }
-        .solve-btn { background: #10b981; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .sidebar li.active { background: #f0f9ff; color: #0284c7; }
+        .sidebar li:hover:not(.active) { background: #f1f5f9; color: #334155; }
+        .nav-progress { margin-top: auto; padding: 20px 15px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .progress-text { display: flex; justify-content: space-between; font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 8px; }
+        .bar-bg { width: 100%; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+        .bar-fill { height: 100%; background: #0284c7; width: 85%; } /* %85 */
+        
+        .main { flex-grow: 1; padding: 50px; overflow-y: auto; }
+        .card { background: #ffffff; padding: 45px; border-radius: 20px; max-width: 1000px; margin: auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        
+        .filter-box { display: flex; gap: 15px; margin-bottom: 30px; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        select { background: #ffffff; color: #334155; border: 1px solid #cbd5e1; padding: 12px 15px; border-radius: 8px; font-family: 'Urbanist'; font-weight: 500; font-size: 14px; outline: none; flex-grow: 1; }
+        
+        .q-list { display: grid; gap: 12px; }
+        .q-item { background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
+        .q-item:hover { border-color: #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transform: translateX(2px); }
+        
+        .q-content { display: flex; align-items: center; gap: 15px; }
+        .q-tag { font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 6px; color: white; }
+        .tag-k1 { background: #3b82f6; } /* Bilgi */
+        .tag-k2 { background: #8b5cf6; } /* Kavrama */
+        .tag-k3 { background: #f59e0b; } /* Uygulama/Analiz */
+        
+        .diff-kolay { color: #10b981; font-weight: 700; font-size: 13px; }
+        .diff-orta { color: #f59e0b; font-weight: 700; font-size: 13px; }
+        .diff-zor { color: #ef4444; font-weight: 700; font-size: 13px; }
+        
+        .q-text { font-weight: 500; color: #1e293b; font-size: 15px; }
+        
+        .solve-btn { background: #f1f5f9; color: #0284c7; border: 1px solid #cbd5e1; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; font-family: 'Urbanist'; transition: 0.2s; }
+        .solve-btn:hover { background: #0284c7; color: white; border-color: #0284c7; }
+
+        .nav-btns { display: flex; justify-content: space-between; margin-top: 40px; }
+        .btn-prev { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; }
+        .btn-next { background: #0284c7; color: white; border: none; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>EduSoft</h2>
+        <h2>AkademiLMS</h2>
         <ul>
             <li><a href="index.html">⌂ Ana Sayfa</a></li>
             <li><a href="hedefler.html">🎯 Hedefler</a></li>
@@ -30,34 +58,66 @@
             <li><a href="konu.html">▣ Konu Anlatımı</a></li>
             <li><a href="ornek.html">★ Örnekler</a></li>
             <li><a href="alistirma.html">✎ Alıştırma</a></li>
-            <li class="active">? Soru Bankası</li>
+            <li class="active"><a href="soru_bankasi.html">? Soru Bankası</a></li>
             <li><a href="analitik.html">↗ Analitik</a></li>
         </ul>
+        <div class="nav-progress">
+            <div class="progress-text"><span>Eğitim Süreci</span><span>%85</span></div>
+            <div class="bar-bg"><div class="bar-fill"></div></div>
+        </div>
     </div>
     <div class="main">
         <div class="card">
-            <h1 style="color:#38bdf8; margin-top:0;">Soru Bankası</h1>
+            <h1 style="color:#0f172a; margin-top:0;">Soru Bankası Değerlendirmesi</h1>
+            <p style="color:#64748b; margin-bottom: 25px;">Modül sonu değerlendirmesi için hazırlanmış 20 soruluk akademik test havuzu.</p>
             
             <div class="filter-box">
-                <select><option>Tüm Kazanımlar</option><option>K1 - Tanımlar</option><option>K2 - Uygular</option></select>
-                <select><option>Tüm Zorluklar</option><option>Kolay</option><option>Orta</option><option>Zor</option></select>
+                <select><option>Tüm Kazanımlar (K1, K2, K3)</option><option>K1 - Bilgi ve Tanım</option><option>K2 - Kavrama</option><option>K3 - Uygulama ve Analiz</option></select>
+                <select><option>Tüm Zorluk Seviyeleri</option><option>Kolay</option><option>Orta</option><option>Zor</option></select>
             </div>
 
-            <div class="q-item">
-                <div><span class="q-tag">K1</span><span class="q-tag" style="background:#10b981;">Kolay</span> Algoritmanın tanımı nedir?</div>
-                <button class="solve-btn" onclick="alert('Demo versiyonda soru önizlemesi kapalıdır.')">Çöz</button>
-            </div>
-            <div class="q-item">
-                <div><span class="q-tag">K2</span><span class="q-tag" style="background:#f59e0b;">Orta</span> Verilen senaryoya göre koşul yapısını belirleyin.</div>
-                <button class="solve-btn" onclick="alert('Demo versiyonda soru önizlemesi kapalıdır.')">Çöz</button>
-            </div>
-            <div class="q-item">
-                <div><span class="q-tag">K3</span><span class="q-tag" style="background:#ef4444;">Zor</span> Akış şemasındaki mantıksal hatayı bulunuz.</div>
-                <button class="solve-btn" onclick="alert('Demo versiyonda soru önizlemesi kapalıdır.')">Çöz</button>
+            <div class="q-list">
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k1">K1</span><span class="diff-kolay">Kolay</span><span class="q-text">Algoritma terimi bilgisayar bilimlerinde neyi ifade eder?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k1">K1</span><span class="diff-kolay">Kolay</span><span class="q-text">Bir algoritmanın her zaman ilk ve son adımı ne olmalıdır?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-kolay">Kolay</span><span class="q-text">Günlük hayattan hangisi bir algoritma örneği olabilir?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k1">K1</span><span class="diff-kolay">Kolay</span><span class="q-text">Algoritma kelimesi adını hangi ünlü matematikçiden almıştır?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k1">K1</span><span class="diff-kolay">Kolay</span><span class="q-text">Algoritmaların geometrik şekillerle ifade edilmiş haline ne denir?</span></div><button class="solve-btn">Çöz</button></div>
+                
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-orta">Orta</span><span class="q-text">Akış şemalarında elips şekli hangi amaçla kullanılır?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-orta">Orta</span><span class="q-text">Belirli bir şarta bağlı olarak işlemlerin tekrarlanmasına ne ad verilir?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-orta">Orta</span><span class="q-text">Matematiksel ve mantıksal işlemler akış şemasında hangi şekille gösterilir?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-orta">Orta</span><span class="q-text">"Eğer hava yağmurluysa şemsiye al" cümlesinde hangi algoritmik yapı vardır?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-orta">Orta</span><span class="q-text">Dışarıdan veri (girdi) almak için hangi akış şeması sembolü kullanılır?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-orta">Orta</span><span class="q-text">Bir algoritmanın adımlarının net ve anlaşılır olması hangi özelliğini ifade eder?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-orta">Orta</span><span class="q-text">Programın akış yönünü hangi işaret veya sembol belirler?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k2">K2</span><span class="diff-orta">Orta</span><span class="q-text">Bellekte veri tutmak ve değeri değişebilen ifadeleri saklamak için ne kullanılır?</span></div><button class="solve-btn">Çöz</button></div>
+
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">Akış şemasında eşkenar dörtgen sembolünün çıkış okları neleri temsil eder?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">Bir döngünün kırılma (çıkış) şartı tanımlanmazsa algoritmada ne oluşur?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">Hangi durumda algoritma mantıksal bir hataya (bug) düşer?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">1'den 100'e kadar olan sayıları toplayan bir algoritmada Sayaç (Counter) nasıl artırılır?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">Bir koşul sağlandığında programın geçmişteki bir adıma dönmesi hangi yapıyı oluşturur?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">Aşağıdakilerden hangisi bir "Sözde Kod" (Pseudocode) örneğidir?</span></div><button class="solve-btn">Çöz</button></div>
+                <div class="q-item"><div class="q-content"><span class="q-tag tag-k3">K3</span><span class="diff-zor">Zor</span><span class="q-text">Algoritmanın "sonluluk" ilkesi ihlal edildiğinde işlemci (CPU) nasıl tepki verir?</span></div><button class="solve-btn">Çöz</button></div>
             </div>
 
-            <div style="text-align:right; margin-top:40px;"><a href="analitik.html" style="background:#0ea5e9; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">Analitiklere Geç ➔</a></div>
+            <div class="nav-btns">
+                <a href="alistirma.html" class="btn-prev">◂ Geri Dön</a>
+                <a href="analitik.html" class="btn-next">Sınavı Bitir ve Analizleri Gör ➔</a>
+            </div>
         </div>
     </div>
+    
+    <script>
+        // Demoda butonların çalışıyormuş hissi vermesi için
+        document.querySelectorAll('.solve-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.innerText = "Çözüldü ✓";
+                this.style.background = "#10b981";
+                this.style.color = "white";
+                this.style.borderColor = "#10b981";
+            });
+        });
+    </script>
 </body>
 </html>
