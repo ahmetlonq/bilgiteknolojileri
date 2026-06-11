@@ -1,63 +1,71 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8"><title>LonqAkademii - Soru Bankası</title>
+    <meta charset="UTF-8">
+    <title>LonqAkademi - Tam Soru Bankası</title>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Urbanist', sans-serif; background: #f8fafc; padding: 40px; color: #1e293b; }
-        .card { background: white; padding: 40px; border-radius: 20px; max-width: 800px; margin: auto; border: 1px solid #e2e8f0; }
-        .q-item { margin-bottom: 15px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; }
-        .options { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #f1f5f9; }
-        button { cursor: pointer; padding: 8px 16px; border-radius: 6px; border: none; background: #0284c7; color: white; font-weight: 600; }
-        .option-btn { background: #f1f5f9; color: #1e293b; margin-right: 10px; }
-        .correct { background: #10b981 !important; color: white; }
-        .wrong { background: #ef4444 !important; color: white; }
+        .card { background: white; padding: 40px; border-radius: 20px; max-width: 800px; margin: auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .q-item { margin-bottom: 25px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; }
+        .options { display: none; margin-top: 15px; }
+        .btn-solve { background: #0284c7; color: white; padding: 10px 20px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .btn-solve:hover { background: #0369a1; }
+        .option-btn { display: block; width: 100%; text-align: left; background: #f1f5f9; margin: 8px 0; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; cursor: pointer; font-weight: 500; }
+        .correct { background: #10b981 !important; color: white; border-color: #10b981; }
+        .wrong { background: #ef4444 !important; color: white; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h1>LonqAkademi Soru Bankası</h1>
+    <h1 style="margin-top:0;">LonqAkademi Soru Bankası</h1>
+    <p style="color:#64748b; margin-bottom:30px;">20 soruluk tam modül değerlendirmesi.</p>
+    
     <div id="quiz-container">
-        <!-- Örnek Soru Yapısı -->
-        <div class="q-item">
-            <p><strong>Soru 1:</strong> Algoritma kelimesi adını hangi ünlü matematikçiden almıştır?</p>
-            <button onclick="toggleOptions(this)">Çöz</button>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false)">A) İbn-i Sina</button>
-                <button class="option-btn" onclick="checkAnswer(this, true)">B) Harezmi</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">C) Ömer Hayyam</button>
-            </div>
-        </div>
+        <script>
+            const sorular = [
+                {q: "Algoritma kelimesi adını hangi matematikçiden alır?", a: ["İbn-i Sina", "Harezmi", "Ömer Hayyam"], c: 1},
+                {q: "Akış şemalarında elips şekli neyi temsil eder?", a: ["Başla/Bitir", "İşlem", "Karar"], c: 0},
+                {q: "Bir döngünün çıkış şartı yoksa ne oluşur?", a: ["Hızlanma", "Sonsuz Döngü", "Hata"], c: 1},
+                {q: "Günlük hayattan hangisi algoritma örneğidir?", a: ["Çay demlemek", "Uyku", "Kitap okumak"], c: 0},
+                {q: "Algoritmanın görselleştirilmiş haline ne denir?", a: ["Kod", "Akış Şeması", "Veri"], c: 1},
+                {q: "Matematiksel işlemler hangi şekille gösterilir?", a: ["Dikdörtgen", "Elips", "Üçgen"], c: 0},
+                {q: "\"Eğer yağmur yağarsa şemsiye al\" yapısı hangisidir?", a: ["Döngü", "Şartlı Yapı", "Veri Girişi"], c: 1},
+                {q: "Dışarıdan veri girmek için hangi şekil kullanılır?", a: ["Paralelkenar", "Dikdörtgen", "Elips"], c: 0},
+                {q: "Algoritmanın adımlarının net olması neyi ifade eder?", a: ["Hız", "Belirginlik", "Bellek"], c: 1},
+                {q: "Akış yönünü hangi işaret belirler?", a: ["Oklar", "Çizgiler", "Kareler"], c: 0},
+                {q: "Veri tutmak için ne kullanılır?", a: ["Değişken", "İşlem", "Süre"], c: 0},
+                {q: "Eşkenar dörtgenin çıkış okları neyi temsil eder?", a: ["Karar", "İşlem", "Başlangıç"], c: 0},
+                {q: "Yanlış mantığa ne denir?", a: ["Bug", "Hız", "Yazılım"], c: 0},
+                {q: "Algoritmanın her zaman sonu olmalıdır ilkesi?", a: ["Sonluluk", "Hız", "Bellek"], c: 0},
+                {q: "Sayaç nasıl artırılır?", a: ["+1", "Sıfırlanarak", "Azaltılarak"], c: 0},
+                {q: "Koşul sağlandığında geriye dönmeye ne denir?", a: ["Döngü", "Hata", "Girdi"], c: 0},
+                {q: "Sözde kod nedir?", a: ["Programlama dili", "Algoritma taslağı", "Hata"], c: 1},
+                {q: "CPU sonluluk kuralı ihlal edilince ne yapar?", a: ["Hata verir", "Kilitlenir", "Hızlanır"], c: 1},
+                {q: "Hangi şekil karar verme anıdır?", a: ["Eşkenar dörtgen", "Dikdörtgen", "Elips"], c: 0},
+                {q: "Algoritma problemi nasıl çözer?", a: ["Adım adım", "Rastgele", "Tahminle"], c: 0}
+            ];
 
-        <div class="q-item">
-            <p><strong>Soru 2:</strong> Akış şemalarında elips şekli hangi amaçla kullanılır?</p>
-            <button onclick="toggleOptions(this)">Çöz</button>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, true)">A) Başla / Bitir</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">B) Veri Girişi</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">C) Karar Verme</button>
-            </div>
-        </div>
+            const container = document.getElementById('quiz-container');
+            sorular.forEach((item, index) => {
+                let html = `<div class="q-item"><p><strong>${index+1}.</strong> ${item.q}</p>
+                            <button class="btn-solve" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Çöz</button>
+                            <div class="options">`;
+                item.a.forEach((opt, i) => {
+                    html += `<button class="option-btn" onclick="check(this, ${i === item.c})">${opt}</button>`;
+                });
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+
+            function check(btn, isCorrect) {
+                if(isCorrect) { btn.classList.add('correct'); alert("Doğru! 🎉"); }
+                else { btn.classList.add('wrong'); alert("Yanlış, tekrar dene."); }
+            }
+        </script>
     </div>
 </div>
-
-<script>
-    function toggleOptions(btn) {
-        btn.nextElementSibling.style.display = 'block';
-        btn.style.display = 'none';
-    }
-
-    function checkAnswer(btn, isCorrect) {
-        if(isCorrect) {
-            btn.classList.add('correct');
-            alert("Tebrikler! Doğru cevap.");
-        } else {
-            btn.classList.add('wrong');
-            alert("Yanlış, tekrar dene!");
-        }
-    }
-</script>
 
 </body>
 </html>
