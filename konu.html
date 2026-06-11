@@ -13,8 +13,7 @@
         .sidebar li.active { background: #0ea5e9; color: white; }
         .main { flex-grow: 1; padding: 60px; overflow-y: auto; background: #0f172a; }
         .content-card { background: #1e293b; padding: 40px; border-radius: 24px; max-width: 1000px; margin: auto; border: 1px solid rgba(255,255,255,0.05); }
-        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 16px; overflow: hidden; margin: 30px 0; border: 1px solid #334155; position: relative; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 16px; overflow: hidden; margin: 30px 0; border: 1px solid #334155; display: flex; justify-content: center; align-items: center; }
         .transcript-btn { background: #334155; color: #94a3b8; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .transcript-btn:hover { background: #475569; color: white; }
         .transcript-text { background: #0f172a; padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 4px solid #38bdf8; display: none; line-height: 1.6; }
@@ -36,16 +35,17 @@
     <div class="main">
         <div class="content-card">
             <h1 id="welcomeTitle" style="margin-top:0; color:#38bdf8;">Konu: Algoritma Tasarımı</h1>
-            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki animasyonlu videoyu izleyerek algoritma mantığını temelden kavrayın.</p>
+            <p style="color:#94a3b8; font-size:18px;">Aşağıdaki videoyu izleyerek algoritmanın ne olduğunu ve bilgisayar bilimlerindeki yerini öğrenin.</p>
             
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/R72LI5TZmuE" title="Algoritma Nedir?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <!-- Senin kodun aynen burada -->
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/l8x9HZ-saKY?si=BeFHy80DqmLSLgBH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             
             <button class="transcript-btn" onclick="toggleT()">👁️ Video Metni (Transkript)</button>
             <div id="tText" class="transcript-text">
                 <strong>Erişilebilirlik Dökümü:</strong><br>
-                "Algoritma, en basit tabiriyle bir sorunu çözmek için planlanan yol haritasıdır. Günlük hayatta karşılaştığımız karmaşık problemleri küçük ve yönetilebilir adımlara bölmemizi sağlar. Bu videoda gördüğünüz gibi, bir labirentten çıkmak ya da bir işlem yapmak için bilgisayarlara verdiğimiz tüm komutlar bu mantıklı sıralama üzerine kuruludur."
+                "Algoritma, Cebrin kurucusu Harezmî tarafından 9. yüzyılda cebir alanındaki araştırmaları neticesinde ortaya konmuştur. En basit haliyle bir problemi çözmek için izlenen adım adım yol haritasıdır. Kodlama yaparken aslında bilgisayara bu algoritmik adımları anlatırız. Verilen talimatlar net, sıralı ve bir sonuca ulaşacak şekilde tasarlanmalıdır."
             </div>
             
             <div class="nav-btns">
