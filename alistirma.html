@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8"><title>EduSoft - Alıştırma</title>
+    <meta charset="UTF-8">
+    <title>EduSoft - Kurbağa ile Algoritma Alıştırması</title>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
         body { margin: 0; background: #0f172a; display: flex; height: 100vh; overflow: hidden; }
-        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; color: #64748b; }
-        .sidebar h2 { color: #38bdf8; text-align: center; font-size: 32px; }
-        .sidebar li { list-style: none; padding: 18px 20px; }
-        .sidebar li.active { background: #0ea5e9; color: white; border-radius: 12px; }
-        .sidebar a { color: inherit; text-decoration: none; }
+        
+        /* SOL MENÜ (Sabit) */
+        .sidebar { width: 280px; background: #1e293b; padding: 40px 20px; color: #64748b; border-right: 1px solid rgba(255,255,255,0.05); }
+        .sidebar h2 { color: #38bdf8; text-align: center; font-size: 32px; margin-bottom: 50px; }
+        .sidebar li { list-style: none; padding: 18px 20px; margin-bottom: 10px; border-radius: 12px; }
+        .sidebar a { color: inherit; text-decoration: none; display: flex; width: 100%; align-items: center; }
+        .sidebar li.active { background: #0ea5e9; color: white; box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3); }
+        
+        /* İLERLEME ÇUBUĞU (%64) */
+        .progress-box { margin-top: auto; padding: 20px; background: rgba(15, 23, 42, 0.5); border-radius: 12px; text-align: center; }
+        .bar-bg { width: 100%; height: 8px; background: #0f172a; border-radius: 4px; margin: 10px 0; overflow: hidden; }
+        .bar-fill { height: 100%; background: #2dd4bf; width: 64%; }
+
+        /* ANA İÇERİK */
         .main { flex-grow: 1; padding: 40px; display: flex; flex-direction: column; }
-        .game-card { background: #1e293b; padding: 30px; border-radius: 24px; flex-grow: 1; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.05); }
-        iframe { flex-grow: 1; border: none; border-radius: 16px; background: #0f172a; }
-        .btn-next { background: #10b981; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; align-self: flex-end; margin-top: 20px; transition: 0.3s; }
-        .btn-next:hover { box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3); transform: translateY(-2px); }
+        .game-card { background: #1e293b; padding: 30px; border-radius: 24px; flex-grow: 1; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        
+        /* WORDWALL IFRAME */
+        .iframe-container { flex-grow: 1; border-radius: 16px; overflow: hidden; background: #0f172a; border: 2px solid #334155; position: relative; }
+        iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        .btn-next { background: #10b981; color: white; padding: 16px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; align-self: flex-end; margin-top: 20px; transition: 0.3s; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4); }
+        .btn-next:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.6); }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
         <h2>EduSoft</h2>
         <ul>
@@ -27,14 +42,29 @@
             <li class="active">✎ Alıştırma</li>
             <li><a href="analitik.html">↗ Analitik</a></li>
         </ul>
-    </div>
-    <div class="main">
-        <div class="game-card">
-            <h1 style="color:white; margin-top:0;">Etkileşimli Simülasyon</h1>
-            <p style="color:#94a3b8; margin-bottom:20px;">Öğrendiğiniz algoritma basamaklarını Wordwall üzerinden pekiştirin.</p>
-            <iframe src="https://wordwall.net/tr/embed/60965384bc8d488995a947d69a239b9c?themeId=1&templateId=3"></iframe>
-            <a href="analitik.html" class="btn-next">Değerlendirme Sonuçları ➔</a>
+        
+        <div class="progress-box">
+            <p style="margin:0; font-size:14px; color:#94a3b8;">Modül İlerlemesi</p>
+            <div class="bar-bg"><div class="bar-fill"></div></div>
+            <h3 style="margin:0; color:#2dd4bf;">%64</h3>
         </div>
     </div>
+
+    <div class="main">
+        <div class="game-card">
+            <h1 style="color:white; margin-top:0; font-size:28px;">Etkileşimli Alıştırma: Kurbağa Atlayışı</h1>
+            <p style="color:#94a3b8; margin-bottom:20px;">Algoritma basamaklarını doğru takip ederek kurbağayı karşıya geçirin. Unutmayın, adımlar mantıklı ve sıralı olmalı!</p>
+            
+            <div class="iframe-container">
+                <iframe src="https://wordwall.net/tr/embed/11831454/algoritma" allowfullscreen></iframe>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                <a href="konu.html" style="color:#94a3b8; text-decoration:none; font-weight:700;">◂ Geri Dön</a>
+                <a href="analitik.html" class="btn-next">Değerlendirme Paneli ➔</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
