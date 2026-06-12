@@ -55,17 +55,17 @@
     </div>
     <div class="main">
         <div class="card">
-            <h1 id="welcomeTitle" style="color:#0f172a; margin-top:0;">Konu: Algoritma Tasarımı</h1>
-            <p style="color:#64748b; font-size:16px;">Aşağıdaki videoyu izleyerek algoritmanın ne olduğunu ve bilgisayar bilimlerindeki yerini öğrenin.</p>
+            <h1 id="welcomeTitle" style="color:#0f172a; margin-top:0;">Ders: Algoritma Temelleri</h1>
+            <p style="color:#64748b; font-size:16px;">LonqAkademi'ye özel hazırlanan aşağıdaki yapay zeka destekli eğitim videosunu izleyerek algoritmanın temellerini öğrenin.</p>
             
             <div class="video-container">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/l8x9HZ-saKY?si=BeFHy80DqmLSLgBH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_0B11DbuSy8?si=Z6HjFm9zfA9e-snP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             
             <button class="transcript-btn" onclick="toggleT()">👁️ Video Metni (Erişilebilirlik)</button>
             <div id="tText" class="transcript-text">
                 <strong>Seslendirme Dökümü:</strong><br>
-                "Algoritma, Cebrin kurucusu Harezmî tarafından 9. yüzyılda cebir alanındaki araştırmaları neticesinde ortaya konmuştur. En basit haliyle bir problemi çözmek için izlenen adım adım yol haritasıdır. Kodlama yaparken aslında bilgisayara bu algoritmik adımları anlatırız. Verilen talimatlar net, sıralı ve bir sonuca ulaşacak şekilde tasarlanmalıdır."
+                "Merhaba, LonqAkademi'ye hoş geldiniz! Bugün bilgisayar bilimlerinin kalbi olan algoritma tasarımını öğreneceğiz. Algoritma kelimesi, 9. yüzyılda yaşamış ünlü matematikçi Harezmi'nin adından gelir. En temel haliyle algoritma, bir problemi çözmek için izlenen adım adım ve mantıksal yol haritasıdır. Bir algoritmanın geçerli olabilmesi için adımlarının net ve sonlu olması gerekir. Bu yüzden her algoritma mutlaka başla komutuyla harekete geçer ve bitir komutuyla sonlanır."
             </div>
             
             <div class="nav-btns">
@@ -75,8 +75,10 @@
         </div>
     </div>
     <script>
-        document.getElementById("welcomeTitle").innerText = "Ders: Algoritma Temelleri";
-        function toggleT() { let x = document.getElementById("tText"); x.style.display = (x.style.display === "block") ? "none" : "block"; }
+        function toggleT() { 
+            let x = document.getElementById("tText"); 
+            x.style.display = (x.style.display === "block") ? "none" : "block"; 
+        }
     </script>
 </body>
 </html>
